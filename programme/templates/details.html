@@ -1,0 +1,22 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+<section class="details">
+    <div class="section-details">
+        <div class="image">
+            <img src="{{details.pochette.url}}">
+        </div>
+        <div class="present">
+            <div class="presents">
+                <h1>Album {{details.nom_Album}}</h1>
+                {% for titre in details.album.all  %}
+                <p><span>Titre:</span> {{titre.nom_titre}} <br>
+                    {{titre.descp}}
+                </p>
+                {% endfor%}
+            </div> 
+        </div>
+    </div>
+</section>
+{% include 'footer.html' %}
+{% endblock  %}

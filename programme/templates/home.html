@@ -1,0 +1,251 @@
+{% extends 'base.html'  %}
+{%  block content  %}
+{% include 'nav.html' %}
+    <section class="hero-section">
+        <div class="hero">
+            <div class="present1">
+                <h1>Yakka_Maimounata</h1>
+                <h2>Ce titre extrait de l'album intitulé "KANOU" de l'artiste Burkinabé Yacouba Bagaya Alias Yakka, <br/>
+                    est un mélange de sonorités traditionnelles mossi (Warba) et de rythmes afroblues.<br/>
+                     Cette chanson  traite des mariages précoces de jeunes filles mineures qui au lieu d'être à l'école, se retrouvent prises aux pièges du mariage forcé. <br/>
+                     Une très belle chanson qui se déguste allègrement.</h2>
+            </div>
+            <div class="present2">
+                <a href="https://youtu.be/kKe-4kQcjas?si=LzIDPn7YPhPn8TXg" data-fslightbox="gallery">
+                    <i class="bx bxs-caret-right-circle"></i>
+                    <span>Régarder</span>
+                </a>                      
+            </div>
+        </div>
+    </section>
+    <section class="biographie" id="biographie">
+        <div class="section-title" >
+            <h2>Biographie.</h2>
+            <p>Yakka . Son aventure musicale commence en 1998 quand il se rend en Côte d'Ivoire avec son groupe "Boulibaye " composé de Traoré karim , Koné Issa (Jézy), Sanou Aboubakar sidi(Wonny )et lui Bagaya Yacouba .Ils sortent un album chez ShowBiz music en 1999 . Le même album sort chez SEYDONI musique en 2000 de retour au bercail, au Burkina Faso sous le titre de "pas de femme , pas de pitié ". Après cet album le groupe s'est disloqué.</p>
+        </div>
+        <div class="presentation"  >
+            <div class="image"   >
+                <img src="/static/ressouce/img/biographie.png">
+            </div>
+            <div class="present"  >
+                <h2>Le rétour.</h2>
+                <p>
+                    Après un moment de silence Yakka revient avec  un maxi de quatre titres 
+                    grâce au subvention du Bbda . Grâce à ce maxi il est repéré par la maison de
+                     production GOMBO PROD EVENT oú il signe avec son nouveau Silmandé composé de Astar 
+                      Ngabou Théophile,  Mohamed Ouattara et lui même. L'album kanou sort en octobre 2021 
+                      . Parallèlement à son groupe Yakka vient
+                     en cette année 2023 vous présenter son nouvel album"KUMAH" la parole  qui sortira bientôt.
+                </p>
+            </div>
+        </div>  
+    </section>
+    {% for album in albums  %}
+    <section class="album" id="Album">
+        <div class="section-title mb-2">
+            <h2>Nouvel Album</h2>
+        </div>
+        <div class="sectional">
+            <div class="images">
+                <img  src="{{album.pochette.url}}">
+                <div class="presents">
+                    <h4>{{album.nom_Album}} </h4>
+                    <p>{{album.desciption}}</p>
+                </div>
+            </div>
+            <div class="titre">
+                {% for titre in album.album.all %}
+                <div class="sound"  >
+                    {% if titre.feat %}
+                    <h5>{{titre.nom_titre}} |feat {{titre.feat}}</h5>
+                    {%else%}
+                    <h5>{{titre.nom_titre}}</h5>
+                    {%endif%} 
+                    <p>{{titre.descp|truncatechars:100 }}</p>              
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+        <div class="link">
+            <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal">Ecouter</a>
+            <div class="modal music fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                    </div>
+                    <div class="modal-body">
+                        <div class="streams">
+                            <img src="/static/ressouce/img/spootify3.png">
+                            <div class="sectionlink">
+                                <a href="">Ecouter</a>
+                            </div>  
+                        </div>
+                        <div class="streams">
+                            <img src="/static/ressouce/img/deezer3.png">
+                            <div class="sectionlink na" >
+                                <a href="">Ecouter</a>
+                            </div>  
+                        </div>
+                        <div class="streams">
+                            <img src="/static/ressouce/img/apple.png">
+                            <div class="sectionlink">
+                                <a href="">Ecouter</a>
+                            </div>  
+                        </div>
+                        <div class="streams">
+                            <img src="/static/ressouce/img/napster.png">
+                            <div class="sectionlink">
+                                <a href="">Ecouter</a>
+                            </div>           
+                        </div>
+                        <div class="streams">
+                            <img src="/static/ressouce/img/tidal 2.png">
+                            <div class="sectionlink">
+                                <a href="">Ecouter</a>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    {%endfor%}
+    <section class="discographie" id="Discographie">
+        <div class="section-title mb-2">
+            <h2>Discographie</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus ex odio vel sed quae quo voluptate, deserunt tenetur quibusdam? Expedita tempora eius accusamus quasi dolorem, at molestias illum natus veritatis?</p>
+        </div>
+        
+        <div class="section-cards">
+            {% for album in albums %}
+            <div class="cards">
+                <div class="image">
+                    <img src="{{album.pochette.url}}" alt="image">
+                </div>
+                <div class="presents">
+                    <h4>{{album.nom_Album}}</h4>
+                    <p>Album</p>
+                    <div class="links">
+                        <a data-fslightbox data-caption="<h2>An example title.</h2><h3>An example description.</h3>" href="{{album.pochette.url}}"><i class="bx bxs-show"></i></a>
+                        <a href="{% url 'details' int_album=album.pk %}"><i class='bx bx-link'></i></a>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+            {% for single in singles %}
+            <div class="cards">
+                <div class="image">
+                    <img src="{{single.pochette_single.url}}">
+                </div>
+                <div class="presents">
+                    <h4>Single </h4>
+                    <p>{{single.non_single}}</p>
+                    <div class="links">
+                        <a data-fslightbox href="{{single.pochette_single.url}}"><i class="bx bxs-show"></i></a>
+                        <a href="link.html"><i class='bx bx-link'></i></a>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+            <!-- <div class="cards">
+                <div class="image">
+                    <img src="/static/ressouce/img/profile.jpg">
+                </div>
+                <div class="presents">
+                    <h4>Titre:</h4>
+                    <p>App</p>
+                    <div class="links">
+                        <a href="#"><i class="bx bxs-show"></i></a>
+                        <a href="/link.html"><i class='bx bx-link'></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="cards">
+                <div class="image">
+                    <img src="/static/ressouce/img/profile.jpg">
+                </div>
+                <div class="presents">
+                    <h4>Titre:</h4>
+                    <p>App</p>
+                    <div class="links">
+                        <a href="#"><i class="bx bxs-show"></i></a>
+                        <a href="/link.html"><i class='bx bx-link'></i></a>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <section class="even">
+        <div class="section-title mb-2">
+            <h2>Concerts/Événements/Live</h2>
+        </div>
+        <div class="sectioncard">
+            <div class="concert">
+                <img src="/static/ressouce/img/profile.jpg">
+            </div>
+            <div class="concert">
+                <img src="/static/ressouce/img/live1.png">
+            </div>
+            <div class="concert">
+                <img src="/static/ressouce/img/live2.png">
+            </div>
+            <div class="concert">
+                <img src="/static/ressouce/img/live3.png">
+            </div>
+        </div>
+    </section>
+    <section class="container grand">
+        <div class="section-title mb-2">
+            <h2>Vidéos</h2>
+        </div>
+        <div class="card">
+            <div class="card-image-container">
+                <iframe width="300" height="200" src="https://www.youtube.com/embed/kKe-4kQcjas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                </iframe>
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 512 512" stroke-width="0" fill="currentColor" stroke="currentColor" class="video-icon">
+                <path d="M464 384.39a32 32 0 01-13-2.77 15.77 15.77 0 01-2.71-1.54l-82.71-58.22A32 32 0 01352 295.7v-79.4a32 32 0 0113.58-26.16l82.71-58.22a15.77 15.77 0 012.71-1.54 32 32 0 0145 29.24v192.76a32 32 0 01-32 32zM268 400H84a68.07 68.07 0 01-68-68V180a68.07 68.07 0 0168-68h184.48A67.6 67.6 0 01336 179.52V332a68.07 68.07 0 01-68 68z"></path>
+              </svg> -->
+            </div>
+            <p class="card-title">Card Title</p>
+            <p class="card-des">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam
+              inventore natus modi repellendus dolorem unde odio sequi! Porro, cum
+              maiores tempore suscipit laudantium perspiciatis, illo sunt,
+              reprehenderit quae est blanditiis.
+            </p>
+            <div class="card-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 384 512" stroke-width="0" fill="currentColor" stroke="currentColor">
+                <path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"></path>
+              </svg>
+              <span class="card-btn-text">Watch Video</span>
+            </div>
+        </div>
+        <div class="row gy-3 gx-1 videos">
+            <div class="col-lg-4 col-md-4 col-sm-6 framess">
+                <iframe width="300" height="200" src="https://www.youtube.com/embed/kKe-4kQcjas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                </iframe>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 framess">
+                <iframe width="300" height="200" src="https://www.youtube.com/embed/kKe-4kQcjas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                </iframe>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6 framess">
+                <iframe width="300" height="200" src="https://www.youtube.com/embed/kKe-4kQcjas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                </iframe>
+            </div>
+            <div class="col-lg-6 col-md-4 col-sm-6 framess">
+                <iframe width="300" height="200" src="https://www.youtube.com/embed/kKe-4kQcjas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+{% include 'footer.html' %}
+{% endblock  %}
+   
